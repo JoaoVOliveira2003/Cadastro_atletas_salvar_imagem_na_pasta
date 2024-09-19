@@ -15,18 +15,46 @@ function limparCampos() {
         fileLabel.innerText = 'Escolher arquivo';
     }
 }
-// Função para gravar pessoa no banco de dados
+
+// function gravarPessoa() {
+//     SalvarArquivo();
+//     $.ajax({
+//         type: 'POST',
+//         url: 'php/gravarPessoa.php',
+//         data: $("#formulario").serialize(),
+//         dataType: 'json',
+//         success: function(response) {
+//             if (response.success) {
+//                 alert('Pessoa gravada com sucesso!');
+//                 limparCampos();
+//                 // Esconde os botões de ação
+//                 $('.delete-person-acao').hide();
+//                 $('.charge-person-acao').hide();
+//                 alert('Erro ao gravar pessoa: ' + response.error);
+
+//             } else {
+//                 alert('Erro ao gravar pessoa: ' + response.error);
+//             }
+//         },
+//         error: function(xhr, status, error) {
+//             alert('Erro na requisição: ' + status);
+//             console.log(xhr.responseText);
+//         }
+//     });
+// }
+
 function gravarPessoa() {
-    SalvarArquivo();
+    var nomedaimagem = SalvarArquivo();
+    console.log(nomedaimagem);
+    var formData = $("#formulario").serializeArray(); 
 
     $.ajax({
         type: 'POST',
         url: 'php/gravarPessoa.php',
-        data: $("#formulario").serialize(),
+        data: formData,
         dataType: 'json',
         success: function(response) {
             if (response.success) {
-                alert('Pessoa gravada com sucesso!');
                 limparCampos();
                 // Esconde os botões de ação
                 $('.delete-person-acao').hide();
@@ -41,6 +69,7 @@ function gravarPessoa() {
         }
     });
 }
+
 
 function SalvarArquivo() {
     var fileInput = document.getElementById('foto');
@@ -59,7 +88,7 @@ function SalvarArquivo() {
             contentType: false,
             success: function(response) {
                 alert('Arquivo enviado com sucesso!');
-                fileInput.value = '';  // Limpar o input após o envio
+                //fileInput.value = '';  // Limpar o input após o envio
             },
             error: function() {
                 alert('Erro ao enviar o arquivo.');
@@ -72,7 +101,8 @@ function SalvarArquivo() {
 
 // Atualizar o nome do arquivo no label
 document.querySelector('.custom-file-input').addEventListener('change', function(e) {
-    var fileName = e.target.files[0] ? e.target.files[0].name : 'Escolher arquivo';
+    var fileNome = e.target.files[0] ? e.target.files[0].name : 'Escolher arquivo';
     var nextSibling = e.target.nextElementSibling;
-    nextSibling.innerText = fileName;
+    nextSibling.innerText = fileNome;
 });
+

@@ -1,10 +1,42 @@
+/* Estiliza o modal para ser maior */
 .modal-lg {
-    max-width: 90%;
-  }
-  .modal-body {
-    max-height: 80vh;
-    overflow-y: auto;
-  }
-  .table th, .table td {
-    white-space: nowrap;
-  }
+  max-width: 90%;
+}
+
+/* Define a altura máxima do corpo do modal e adiciona rolagem vertical se necessário */
+.modal-body {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+/* Evita que o texto nas células da tabela seja quebrado */
+.table th, .table td {
+  white-space: nowrap;
+}
+
+/* Aumenta o tamanho dos checkboxes */
+.form-check-input {
+  transform: scale(1.5); 
+  margin-right: 10px;
+}
+
+/* Aumenta o tamanho da fonte do rótulo dos checkboxes */
+.form-check-label {
+  font-size: 1.2rem; 
+}
+
+/* Adiciona margem inferior aos grupos de checkboxes */
+.form-check {
+  margin-bottom: 10px; 
+}
+
+/* Mantém o footer fixo na parte inferior da página */
+.fixed-bottom-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+
+
